@@ -45,7 +45,8 @@ const section = (
 
 export default config({
   storage: {
-    kind: "local",
+    kind: "github",
+    repo: "blazegreenhalgh/moscow-dog-grooming",
   },
   locale: "ru-RU",
   singletons: {
