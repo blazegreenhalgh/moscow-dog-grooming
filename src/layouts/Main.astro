@@ -1,27 +1,73 @@
 ---
 import "../styles/global.css";
-import { Font } from "astro:assets";
-
 import Header from "../components/Header.astro";
 
-const { title, description } = Astro.props;
+interface Props {
+  site: {
+    seoTitle: string;
+    seoDescription: string;
+    socialImage: string;
+    headerLogo: string;
+    phoneHref: string;
+    navServices: string;
+    navPrices: string;
+    navGallery: string;
+    navReviews: string;
+    navContact: string;
+    headerPhoneButton: string;
+    mobilePhoneButton: string;
+    location: string;
+    hours: string;
+  };
+}
+
+const { site } = Astro.props;
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang="ru" class="antialiased">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#d2a7b0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <Font cssVariable="--font-roboto" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Nunito:wght@700;800;900&display=swap&subset=cyrillic"
+      rel="stylesheet"
+    />
+    <title>{site.seoTitle}</title>
+    <meta name="description" content={site.seoDescription} />
+    <meta property="og:title" content={site.seoTitle} />
+    <meta property="og:description" content={site.seoDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={site.socialImage} />
   </head>
   <body>
-    <Header />
-    <main>
-      <slot />
-    </main>
+    <div class="isolate">
+      <Header content={site} />
+      <main>
+        <slot />
+      </main>
+    </div>
+
+    <script is:inline>
+      const revealItems = document.querySelectorAll("[data-reveal]");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      revealItems.forEach((item) => observer.observe(item));
+    </script>
   </body>
 </html>

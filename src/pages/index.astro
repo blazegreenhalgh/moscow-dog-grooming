@@ -1,11 +1,808 @@
 ---
+import { Icon } from "astro-icon/components";
+import { createReader } from "@keystatic/core/reader";
+import keystaticConfig from "../../keystatic.config";
 import Main from "../layouts/Main.astro";
+import "swiper/css";
+import "swiper/css/a11y";
+import "swiper/css/keyboard";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+const reader = createReader(process.cwd(), keystaticConfig);
+
+const [
+  site,
+  hero,
+  services,
+  beforeAfter,
+  benefits,
+  pricing,
+  gallery,
+  reviews,
+  processSection,
+  faq,
+  contact,
+] = await Promise.all([
+  reader.singletons.site.read(),
+  reader.singletons.hero.read(),
+  reader.singletons.services.read(),
+  reader.singletons.beforeAfter.read(),
+  reader.singletons.benefits.read(),
+  reader.singletons.pricing.read(),
+  reader.singletons.gallery.read(),
+  reader.singletons.reviews.read(),
+  reader.singletons.process.read(),
+  reader.singletons.faq.read(),
+  reader.singletons.contact.read(),
+]);
+
+if (
+  !site ||
+  !hero ||
+  !services ||
+  !beforeAfter ||
+  !benefits ||
+  !pricing ||
+  !gallery ||
+  !reviews ||
+  !processSection ||
+  !faq ||
+  !contact
+) {
+  throw new Error("One or more required homepage CMS sections are missing.");
+}
 ---
 
-<Main title="Home" description="Description">
-  <section class="bg-canvas-500 px-gutter">
-    <div class="container">
-      <h1>Home</h1>
+<Main site={site}>
+  <section class="bg-blush-500 overflow-hidden">
+    <div
+      class="page-shell grid min-h-[calc(100svh-5rem)] items-center gap-12 py-14 lg:grid-cols-2 lg:gap-16 lg:py-20"
+    >
+      <div class="relative z-10 flex flex-col items-start gap-7" data-reveal>
+        <div
+          class="border-cream-50/50 bg-cream-50/15 text-cream-50 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-base sm:text-sm"
+        >
+          <span class="size-2 rounded-full bg-orange-500"></span>
+          {hero.eyebrow}
+        </div>
+
+        <div class="flex flex-col gap-5">
+          <h1
+            class="text-cream-50 max-w-[12ch] text-5xl tracking-tight text-balance sm:text-6xl lg:text-7xl xl:text-8xl"
+          >
+            {hero.heading}
+          </h1>
+          <p
+            class="text-cream-50/90 max-w-[48ch] text-lg text-pretty sm:text-base lg:text-lg"
+          >
+            {hero.paragraph}
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href={site.phoneHref}
+            class="focus-ring text-cream-50 inline-flex min-h-14 items-center gap-2 rounded-full bg-orange-500 py-3 pr-5 pl-4 text-base font-semibold shadow-[0_10px_30px_rgb(243_93_50_/_0.28)] transition-transform hover:-translate-y-1"
+          >
+            <Icon name="phone" class="stroke-cream-50 size-6 shrink-0" />
+            {hero.primaryButton}
+          </a>
+          <a
+            href="#prices"
+            class="focus-ring text-cream-50 decoration-cream-50/50 hover:text-cocoa-900 rounded-lg text-base underline underline-offset-8 transition-colors"
+          >
+            {hero.secondaryButton}
+          </a>
+        </div>
+
+        <div
+          class="text-cream-50/85 flex flex-wrap gap-x-7 gap-y-2 text-base sm:text-sm"
+        >
+          <span>{site.location}</span>
+          <span>{site.hours}</span>
+          <span>{hero.bookingNote}</span>
+        </div>
+      </div>
+
+      <div class="relative mx-auto w-full max-w-2xl lg:mx-0" data-reveal>
+        <div
+          class="playful-card bg-cream-100 relative aspect-[5/6] rotate-2 overflow-hidden shadow-[0_30px_80px_rgb(77_45_36_/_0.16)] sm:aspect-[4/3]"
+        >
+          <img
+            src={hero.mainImage}
+            alt=""
+            class="size-full object-cover object-center"
+            width="1800"
+            height="1200"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+
+        <div
+          class="playful-card absolute -bottom-8 -left-2 w-36 -rotate-6 overflow-hidden bg-sky-100 shadow-[0_16px_50px_rgb(77_45_36_/_0.18)] sm:-left-8 sm:w-48 lg:-left-12"
+        >
+          <img
+            src={hero.secondaryImage}
+            alt=""
+            class="aspect-square w-full object-cover"
+            width="1800"
+            height="1200"
+            loading="eager"
+          />
+        </div>
+
+        <div
+          class="floating-note font-display text-cream-50 absolute -top-5 -right-2 rounded-full bg-orange-500 px-5 py-3 text-base font-extrabold shadow-lg sm:-right-6 sm:text-lg"
+        >
+          {hero.floatingNote}
+        </div>
+      </div>
     </div>
   </section>
+
+  <div
+    class="text-cream-50 overflow-hidden bg-orange-500 py-4"
+    aria-hidden="true"
+  >
+    <div class="ticker-track flex w-max items-center">
+      {
+        Array.from({ length: 2 }).map(() => (
+          <div class="ticker-group font-display flex shrink-0 items-center justify-around gap-6 px-3 text-lg font-extrabold sm:text-2xl">
+            {hero.tickerItems.map((item) => (
+              <>
+                <span>{item}</span>
+                <span>•</span>
+              </>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <section id="services" class="section-pad bg-cream-50 scroll-mt-24">
+    <div class="page-shell flex flex-col gap-12 lg:gap-16">
+      <div class="grid gap-7 lg:grid-cols-2 lg:items-end" data-reveal>
+        <div class="flex flex-col items-start gap-4">
+          <p class="font-mono text-sm tracking-wide text-orange-600">
+            {services.eyebrow}
+          </p>
+          <h2
+            class="text-cocoa-900 max-w-[14ch] text-4xl tracking-tight text-balance sm:text-5xl lg:text-6xl"
+          >
+            {services.heading}
+          </h2>
+        </div>
+        <p
+          class="text-cocoa-700 max-w-[52ch] text-lg text-pretty sm:text-base lg:justify-self-end"
+        >
+          {services.paragraph}
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-2">
+        {
+          services.cards.map((card, index) => (
+            <article
+              class:list={[
+                "playful-card group overflow-hidden",
+                index % 2 === 0 ? "bg-blush-100" : "bg-sky-100",
+              ]}
+              data-reveal
+            >
+              <div class="aspect-[4/3] overflow-hidden">
+                <img
+                  src={card.image}
+                  alt=""
+                  class="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  width="1400"
+                  height="933"
+                  loading="lazy"
+                />
+              </div>
+              <div class="flex flex-col gap-5 p-7 sm:p-9">
+                <h3 class="text-cocoa-900 text-3xl tracking-tight sm:text-4xl">
+                  {card.title}
+                </h3>
+                <ul
+                  role="list"
+                  class="text-cocoa-700 grid gap-3 text-base sm:grid-cols-2 sm:text-sm"
+                >
+                  {card.items.map((item) => (
+                    <li class="flex items-start gap-2">
+                      <Icon
+                        name="check"
+                        class="size-4 h-lh shrink-0 stroke-orange-600"
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad overflow-hidden bg-orange-500">
+    <div class="page-shell flex flex-col gap-10">
+      <div class="grid gap-6 lg:grid-cols-2 lg:items-end" data-reveal>
+        <div class="flex flex-col gap-4">
+          <p class="text-cream-50/75 font-mono text-sm tracking-wide">
+            {beforeAfter.eyebrow}
+          </p>
+          <h2
+            class="text-cream-50 max-w-[12ch] text-4xl tracking-tight text-balance sm:text-5xl lg:text-6xl"
+          >
+            {beforeAfter.heading}
+          </h2>
+        </div>
+        <p
+          class="text-cream-50/85 max-w-[50ch] text-lg text-pretty sm:text-base lg:justify-self-end"
+        >
+          {beforeAfter.paragraph}
+        </p>
+      </div>
+
+      <div class="relative" data-before-after-slider data-reveal>
+        <div
+          class="swiper overflow-hidden rounded-[2rem]"
+          data-before-after-swiper
+        >
+          <div class="swiper-wrapper">
+            {
+              beforeAfter.slides.map((slide, index) => (
+                <article
+                  class="swiper-slide px-2 py-3 sm:px-3 sm:py-4"
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`${index + 1} из ${beforeAfter.slides.length}`}
+                >
+                  <div class="grid grid-cols-2 gap-3 sm:gap-5">
+                    <figure class="playful-card bg-cream-100 relative rotate-[-1deg] overflow-hidden">
+                      <img
+                        src={slide.beforeImage}
+                        alt=""
+                        class="aspect-[4/5] w-full object-cover md:aspect-[4/3]"
+                        width="1400"
+                        height="933"
+                        loading="lazy"
+                      />
+                      <figcaption class="bg-cocoa-900 text-cream-50 absolute top-3 left-3 rounded-full px-3 py-1.5 text-sm sm:top-4 sm:left-4 sm:px-4 sm:py-2">
+                        {beforeAfter.beforeLabel}
+                      </figcaption>
+                    </figure>
+
+                    <figure class="playful-card bg-cream-100 relative rotate-1 overflow-hidden">
+                      <img
+                        src={slide.afterImage}
+                        alt=""
+                        class="aspect-[4/5] w-full object-cover md:aspect-[4/3]"
+                        width="1400"
+                        height="933"
+                        loading="lazy"
+                      />
+                      <figcaption class="bg-cream-50 absolute top-3 left-3 rounded-full px-3 py-1.5 text-sm text-orange-600 sm:top-4 sm:left-4 sm:px-4 sm:py-2">
+                        {beforeAfter.afterLabel}
+                      </figcaption>
+                    </figure>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="focus-ring bg-cream-50 text-cocoa-900 absolute top-1/2 left-3 z-10 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full shadow-[0_8px_28px_rgb(47_27_23_/_0.2)] transition-transform hover:scale-105 sm:left-5 sm:size-14"
+          data-slider-prev
+          aria-label="Предыдущий пример"
+        >
+          <Icon name="right-arrow" class="size-5 rotate-180 sm:size-6" />
+        </button>
+
+        <button
+          type="button"
+          class="focus-ring bg-cream-50 text-cocoa-900 absolute top-1/2 right-3 z-10 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full shadow-[0_8px_28px_rgb(47_27_23_/_0.2)] transition-transform hover:scale-105 sm:right-5 sm:size-14"
+          data-slider-next
+          aria-label="Следующий пример"
+        >
+          <Icon name="right-arrow" class="size-5 sm:size-6" />
+        </button>
+
+        <div
+          class="before-after-pagination mt-5 flex items-center justify-center gap-2.5"
+          data-slider-pagination
+        >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-cocoa-900 text-cream-50">
+    <div class="page-shell grid gap-12 lg:grid-cols-[7fr_13fr] lg:gap-16">
+      <div class="flex flex-col items-start gap-4" data-reveal>
+        <p class="font-mono text-sm tracking-wide text-orange-300">
+          {benefits.eyebrow}
+        </p>
+        <h2
+          class="max-w-[10ch] text-4xl tracking-tight text-balance sm:text-5xl"
+        >
+          {benefits.heading}
+        </h2>
+      </div>
+
+      <div class="grid gap-0">
+        {
+          benefits.items.map((benefit, index) => (
+            <article
+              class="border-cream-50/15 grid gap-4 border-t py-7 first:border-t-0 first:pt-0 sm:grid-cols-[5rem_1fr] sm:gap-6"
+              data-reveal
+            >
+              <p class="font-display text-2xl text-orange-300 tabular-nums">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <div class="flex flex-col gap-2">
+                <h3 class="text-cream-50 text-2xl tracking-tight sm:text-3xl">
+                  {benefit.title}
+                </h3>
+                <p class="text-cream-50/70 max-w-[56ch] text-base text-pretty sm:text-sm">
+                  {benefit.paragraph}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="prices" class="section-pad bg-blush-100 scroll-mt-24">
+    <div class="page-shell flex flex-col items-center gap-12 text-center">
+      <div class="flex max-w-3xl flex-col items-center" data-reveal>
+        <div class="flex flex-col items-center gap-4">
+          <p class="font-mono text-sm tracking-wide text-orange-600">
+            {pricing.eyebrow}
+          </p>
+          <h2
+            class="text-cocoa-900 max-w-[13ch] text-4xl tracking-tight text-balance sm:text-5xl lg:text-6xl"
+          >
+            {pricing.heading}
+          </h2>
+        </div>
+      </div>
+
+      <article
+        class="playful-card bg-cream-50 flex w-full max-w-4xl flex-col items-center gap-8 p-7 text-center sm:p-10"
+        data-reveal
+      >
+        <div class="flex flex-col items-center gap-5">
+          <p
+            class="rounded-full bg-orange-50 px-3 py-1 text-sm text-orange-600"
+          >
+            {pricing.audience}
+          </p>
+          <div class="flex flex-col gap-2">
+            <p class="text-cocoa-700 text-base sm:text-sm">
+              {pricing.priceLabel}
+            </p>
+            <p
+              class="font-display text-cocoa-900 text-4xl font-extrabold tracking-tight whitespace-nowrap tabular-nums sm:text-6xl lg:text-7xl"
+            >
+              {pricing.price}
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center gap-6">
+          <p
+            class="text-cocoa-700 max-w-[40ch] text-lg text-pretty sm:text-base"
+          >
+            {pricing.paragraph}
+          </p>
+          <a
+            href={site.phoneHref}
+            class="focus-ring text-cream-50 inline-flex min-h-12 items-center gap-2 rounded-full bg-orange-500 py-3 pr-5 pl-4 text-base font-semibold transition-transform hover:-translate-y-1"
+          >
+            <Icon name="phone" class="stroke-cream-50 size-5 shrink-0" />
+            {pricing.button}
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="gallery" class="section-pad bg-cream-50 scroll-mt-24">
+    <div class="page-shell flex flex-col gap-12">
+      <div
+        class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_14rem] lg:items-end xl:grid-cols-[2fr_1fr]"
+        data-reveal
+      >
+        <div class="flex flex-col gap-4">
+          <p class="font-mono text-sm tracking-wide text-orange-600">
+            {gallery.eyebrow}
+          </p>
+          <h2
+            class="text-cocoa-900 max-w-[20ch] text-4xl tracking-tight text-balance sm:text-5xl lg:text-6xl"
+          >
+            {gallery.heading}
+          </h2>
+        </div>
+        <p
+          class="text-cocoa-700 max-w-[48ch] text-lg text-pretty sm:text-base lg:justify-self-end"
+        >
+          {gallery.paragraph}
+        </p>
+      </div>
+
+      <div class="columns-1 gap-4 sm:columns-2 lg:columns-3" data-reveal>
+        {
+          gallery.images.map((item) => (
+            <figure class="playful-card group bg-blush-100 mb-4 break-inside-avoid overflow-hidden last:mb-0">
+              <img
+                src={item.image}
+                alt=""
+                class="block h-auto w-full transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="section-pad scroll-mt-24 bg-sky-100">
+    <div class="page-shell grid gap-12 lg:grid-cols-[7fr_13fr] lg:gap-16">
+      <div class="flex flex-col items-start gap-5" data-reveal>
+        <p class="font-mono text-sm tracking-wide text-orange-600">
+          {reviews.eyebrow}
+        </p>
+        <h2
+          class="text-cocoa-900 max-w-[10ch] text-4xl tracking-tight text-balance sm:text-5xl"
+        >
+          {reviews.heading}
+        </h2>
+        <div class="flex items-center gap-1" aria-label="5 из 5">
+          {
+            Array.from({ length: 5 }).map(() => (
+              <Icon name="star" class="size-5 shrink-0 fill-orange-500" />
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="relative min-w-0" data-reviews-slider data-reveal>
+        <div class="swiper overflow-hidden" data-reviews-swiper>
+          <div class="swiper-wrapper">
+            {
+              reviews.testimonials.map((testimonial, index) => (
+                <figure
+                  class="swiper-slide bg-cream-50 flex min-h-64 flex-col justify-between gap-8 rounded-[2rem] p-7 sm:min-h-72 sm:p-10"
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`${index + 1} из ${reviews.testimonials.length}`}
+                >
+                  <blockquote>
+                    <p class="text-cocoa-900 max-w-[64ch] text-xl leading-relaxed text-pretty sm:text-2xl">
+                      “{testimonial.quote}”
+                    </p>
+                  </blockquote>
+                  <figcaption class="text-cocoa-700 text-base sm:text-sm">
+                    {testimonial.author}
+                  </figcaption>
+                </figure>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="mt-6 flex items-center justify-between gap-5">
+          <div
+            class="reviews-pagination flex items-center gap-2.5"
+            data-reviews-pagination
+          >
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button
+              type="button"
+              class="focus-ring bg-cream-50 text-cocoa-900 inline-flex size-11 items-center justify-center rounded-full shadow-[0_8px_28px_rgb(47_27_23_/_0.12)] transition-transform hover:scale-105 sm:size-12"
+              data-reviews-prev
+              aria-label="Предыдущий отзыв"
+            >
+              <Icon name="right-arrow" class="size-5 rotate-180" />
+            </button>
+
+            <button
+              type="button"
+              class="focus-ring bg-cream-50 text-cocoa-900 inline-flex size-11 items-center justify-center rounded-full shadow-[0_8px_28px_rgb(47_27_23_/_0.12)] transition-transform hover:scale-105 sm:size-12"
+              data-reviews-next
+              aria-label="Следующий отзыв"
+            >
+              <Icon name="right-arrow" class="size-5" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-cream-50">
+    <div class="page-shell grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <div class="flex flex-col gap-8" data-reveal>
+        <div class="flex flex-col gap-4">
+          <p class="font-mono text-sm tracking-wide text-orange-600">
+            {processSection.eyebrow}
+          </p>
+          <h2
+            class="text-cocoa-900 max-w-[12ch] text-4xl tracking-tight text-balance sm:text-5xl"
+          >
+            {processSection.heading}
+          </h2>
+        </div>
+        <ol role="list" class="grid gap-4">
+          {
+            processSection.steps.map((step, index) => (
+              <li
+                class:list={[
+                  "playful-card flex gap-4 p-5",
+                  index === 0
+                    ? "bg-blush-100"
+                    : index === 1
+                      ? "bg-orange-50"
+                      : "bg-sky-100",
+                ]}
+              >
+                <span class="font-display text-2xl font-extrabold text-orange-600 tabular-nums">
+                  {index + 1}
+                </span>
+                <div class="flex flex-col gap-1">
+                  <h3 class="text-cocoa-900 text-xl tracking-tight">
+                    {step.title}
+                  </h3>
+                  <p class="text-cocoa-700 text-base sm:text-sm">
+                    {step.paragraph}
+                  </p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+
+      <div class="flex flex-col gap-8" data-reveal>
+        <div class="flex flex-col gap-4">
+          <p class="font-mono text-sm tracking-wide text-orange-600">
+            {faq.eyebrow}
+          </p>
+          <h2
+            class="text-cocoa-900 max-w-[12ch] text-4xl tracking-tight text-balance sm:text-5xl"
+          >
+            {faq.heading}
+          </h2>
+        </div>
+        <div class="divide-cocoa-900/10 border-cocoa-900/10 divide-y border-y">
+          {
+            faq.items.map((item) => (
+              <details class="group py-5">
+                <summary class="focus-ring text-cocoa-900 flex cursor-pointer list-none items-start justify-between gap-4 rounded-lg text-base font-semibold sm:text-sm">
+                  {item.question}
+                  <span class="text-xl text-orange-600 transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p class="text-cocoa-700 max-w-[58ch] pt-3 text-base text-pretty sm:text-sm">
+                  {item.answer}
+                </p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section-pad scroll-mt-24 bg-orange-500">
+    <div class="page-shell">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-end" data-reveal>
+        <div class="flex flex-col items-start gap-6">
+          <p class="text-cream-50/75 font-mono text-sm tracking-wide">
+            {contact.eyebrow}
+          </p>
+          <h2
+            class="text-cream-50 max-w-[12ch] text-5xl tracking-tight text-balance sm:text-6xl lg:text-7xl"
+          >
+            {contact.heading}
+          </h2>
+          <p
+            class="text-cream-50/85 max-w-[46ch] text-lg text-pretty sm:text-base"
+          >
+            {contact.paragraph}
+          </p>
+        </div>
+
+        <div class="grid gap-8 lg:justify-self-end">
+          <div class="flex flex-col gap-2">
+            <p class="text-cream-50/70 text-base sm:text-sm">
+              {contact.phoneLabel}
+            </p>
+            <a
+              href={site.phoneHref}
+              class="focus-ring font-display text-cream-50 decoration-cream-50/35 rounded-lg text-3xl font-extrabold tracking-tight underline underline-offset-8 sm:text-4xl"
+            >
+              {site.phoneDisplay}
+            </a>
+          </div>
+          <div class="flex flex-col gap-2">
+            <p class="text-cream-50/70 text-base sm:text-sm">
+              {contact.addressLabel}
+            </p>
+            <p
+              class="font-display text-cream-50 max-w-[28ch] text-2xl font-extrabold text-pretty sm:text-3xl"
+            >
+              {contact.address}
+            </p>
+          </div>
+          <p class="text-cream-50/75 text-base sm:text-sm">
+            {site.hours}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-blush-500 py-9">
+    <div
+      class="page-shell flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
+    >
+      <a href="/" aria-label="Главная" class="focus-ring rounded-xl">
+        <img
+          src={site.footerLogo}
+          alt=""
+          class="w-44"
+          width="1200"
+          height="416"
+          loading="lazy"
+        />
+      </a>
+      <div
+        class="text-cream-50/80 flex flex-col gap-3 text-base sm:items-end sm:text-right sm:text-sm"
+      >
+        <div class="flex flex-wrap gap-x-5 gap-y-1 sm:justify-end">
+          <span>{site.location}</span>
+          <span>{site.hours}</span>
+        </div>
+        <p>{site.footerTagline}</p>
+        <p>© {new Date().getFullYear()} {site.footerBusinessName}</p>
+      </div>
+    </div>
+  </footer>
+
+  <a
+    href={site.phoneHref}
+    class="focus-ring bg-cocoa-900 text-cream-50 fixed right-4 bottom-4 z-40 inline-flex min-h-12 items-center gap-2 rounded-full py-2 pr-4 pl-3 text-base font-semibold shadow-xl sm:hidden"
+  >
+    <Icon name="phone" class="stroke-cream-50 size-5 shrink-0" />
+    {site.stickyPhoneButton}
+  </a>
 </Main>
+
+<script>
+  import Swiper from "swiper";
+  import { A11y, Keyboard, Navigation, Pagination } from "swiper/modules";
+
+  document
+    .querySelectorAll<HTMLElement>("[data-before-after-slider]")
+    .forEach((slider) => {
+      const swiperElement = slider.querySelector<HTMLElement>(
+        "[data-before-after-swiper]",
+      );
+      const pagination = slider.querySelector<HTMLElement>(
+        "[data-slider-pagination]",
+      );
+      const previous =
+        slider.querySelector<HTMLButtonElement>("[data-slider-prev]");
+      const next =
+        slider.querySelector<HTMLButtonElement>("[data-slider-next]");
+
+      if (!swiperElement || !pagination || !previous || !next) return;
+
+      new Swiper(swiperElement, {
+        modules: [A11y, Keyboard, Navigation, Pagination],
+        slidesPerView: 1,
+        speed: 500,
+        loop: true,
+        grabCursor: true,
+        keyboard: {
+          enabled: true,
+          onlyInViewport: true,
+        },
+        navigation: {
+          prevEl: previous,
+          nextEl: next,
+        },
+        pagination: {
+          el: pagination,
+          clickable: true,
+          bulletElement: "button",
+          bulletClass: "before-after-bullet",
+          bulletActiveClass: "is-active",
+        },
+        a11y: {
+          enabled: true,
+          containerMessage: "Примеры до и после груминга",
+          containerRoleDescriptionMessage: "карусель",
+          slideRole: "group",
+          slideLabelMessage: "{{index}} из {{slidesLength}}",
+          prevSlideMessage: "Предыдущий пример",
+          nextSlideMessage: "Следующий пример",
+          paginationBulletMessage: "Перейти к примеру {{index}}",
+        },
+      });
+    });
+
+  document
+    .querySelectorAll<HTMLElement>("[data-reviews-slider]")
+    .forEach((slider) => {
+      const swiperElement = slider.querySelector<HTMLElement>(
+        "[data-reviews-swiper]",
+      );
+      const pagination = slider.querySelector<HTMLElement>(
+        "[data-reviews-pagination]",
+      );
+      const previous = slider.querySelector<HTMLButtonElement>(
+        "[data-reviews-prev]",
+      );
+      const next = slider.querySelector<HTMLButtonElement>(
+        "[data-reviews-next]",
+      );
+
+      if (!swiperElement || !pagination || !previous || !next) return;
+
+      new Swiper(swiperElement, {
+        modules: [A11y, Keyboard, Navigation, Pagination],
+        slidesPerView: 1,
+        spaceBetween: 16,
+        speed: 500,
+        loop: true,
+        grabCursor: true,
+        autoHeight: true,
+        breakpoints: {
+          640: {
+            spaceBetween: 24,
+          },
+        },
+        keyboard: {
+          enabled: true,
+          onlyInViewport: true,
+        },
+        navigation: {
+          prevEl: previous,
+          nextEl: next,
+        },
+        pagination: {
+          el: pagination,
+          clickable: true,
+          bulletElement: "button",
+          bulletClass: "reviews-bullet",
+          bulletActiveClass: "is-active",
+        },
+        a11y: {
+          enabled: true,
+          containerMessage: "Отзывы клиентов груминг-салона",
+          containerRoleDescriptionMessage: "карусель",
+          slideRole: "group",
+          slideLabelMessage: "{{index}} из {{slidesLength}}",
+          prevSlideMessage: "Предыдущий отзыв",
+          nextSlideMessage: "Следующий отзыв",
+          paginationBulletMessage: "Перейти к отзыву {{index}}",
+        },
+      });
+    });
+</script>

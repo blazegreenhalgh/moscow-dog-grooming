@@ -1,26 +1,21 @@
 // @ts-check
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig } from "astro/config";
 
+import node from "@astrojs/node";
+import react from "@astrojs/react";
+import keystatic from "@keystatic/astro";
 import tailwindcss from "@tailwindcss/vite";
-
 import icon from "astro-icon";
-
-import netlify from "@astrojs/netlify";
-
 import astroInspectClip from "astro-inspect-clip";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "static",
   vite: {
     plugins: [tailwindcss()],
   },
-  fonts: [
-    {
-      provider: fontProviders.fontsource(),
-      name: "Roboto",
-      cssVariable: "--font-roboto",
-    },
-  ],
-  integrations: [icon(), astroInspectClip()],
-  adapter: netlify(),
+  integrations: [react(), keystatic(), icon(), astroInspectClip()],
+  adapter: node({
+    mode: "standalone",
+  }),
 });

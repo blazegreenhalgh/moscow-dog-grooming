@@ -1,0 +1,34 @@
+{
+  "eyebrow": "Галерея",
+  "heading": "Счастливые хвосты и довольные мордочки.",
+  "paragraph": "Немного процесса, много заботы и тот самый свежий вид после хорошего груминга.",
+  "images": [
+    {
+      "image": "/images/dog-grooming-gallery-1.jpg"
+    },
+    {
+      "image": "/images/cat-grooming-gallery-1.jpg"
+    },
+    {
+      "image": "/images/dog-grooming-gallery-2.jpg"
+    },
+    {
+      "image": "/images/cat-grooming-gallery-2.jpg"
+    },
+    {
+      "image": "/images/dog-grooming-gallery-3.jpg"
+    },
+    {
+      "image": "/images/cat-grooming-hero.jpg"
+    },
+    {
+      "image": "/images/dog-grooming-hero.jpg"
+    },
+    {
+      "image": "/images/dog-grooming-care.jpg"
+    },
+    {
+      "image": "/images/dog-grooming-finish.jpg"
+    }
+  ]
+}

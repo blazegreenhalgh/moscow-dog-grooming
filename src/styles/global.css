@@ -1,269 +1,234 @@
 @import "tailwindcss";
 
-/* ==========================================================================
-   SOL STUDIOS TAILWIND DESIGN SYSTEM
-   Reusable foundation for SOL STUDIOS
-   Viewport scaling window: 400px → 1440px (all clamps target this range).
-   ========================================================================== */
-
 @theme {
-  /* --- Fonts --- */
-  --font-body: var(--font-roboto), system-ui, sans-serif;
-  --font-display: var(--font-roboto), system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-display: "Nunito", "Arial Rounded MT Bold", system-ui, sans-serif;
 
-  /* --- Colour Reset ---
-     Wipe TW's default palette so only our tokens exist.
-     This keeps `bg-blue-500` etc. from compiling — intentional. */
-  --color-*: initial;
-
-  /* --- Neutrals --- */
+  --color-cream-50: #fffaf0;
+  --color-cream-100: #fff2dc;
+  --color-cream-200: #f7dfbd;
+  --color-blush-100: #f0d6dc;
+  --color-blush-300: #dfbbc3;
+  --color-blush-500: #d2a7b0;
+  --color-blush-700: #b17e8a;
+  --color-orange-50: #fff0e8;
+  --color-orange-300: #ff9d74;
+  --color-orange-500: #f35d32;
+  --color-orange-600: #df4822;
+  --color-cocoa-500: #6c4132;
+  --color-cocoa-700: #4d2d24;
+  --color-cocoa-900: #2f1b17;
+  --color-sky-100: #dcecf1;
+  --color-sky-300: #b8d7e1;
   --color-white: #ffffff;
   --color-black: #000000;
 
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
-  --color-gray-950: #030712;
+  --radius-card: 2rem;
+  --radius-feature: 3rem;
 
-  /* --- Primary ---
-     TODO: These are placeholder-identical to secondary & accent.
-     Swap in real palettes before shipping. */
-  --color-primary: var(--color-primary-600);
-  --color-primary-hover: var(--color-primary-700);
-  --color-primary-surface: var(--color-primary-50);
-  --color-primary-50: #fef1f9;
-  --color-primary-100: #fde6f4;
-  --color-primary-200: #feccea;
-  --color-primary-300: #fea3d8;
-  --color-primary-400: #fc6abd;
-  --color-primary-500: #f62e9a;
-  --color-primary-600: #e71b7f;
-  --color-primary-700: #c90d64;
-  --color-primary-800: #a60e52;
-  --color-primary-900: #8a1148;
-  --color-primary-950: #550227;
-
-  /* --- Secondary --- */
-  --color-secondary: var(--color-secondary-600);
-  --color-secondary-hover: var(--color-secondary-700);
-  --color-secondary-surface: var(--color-secondary-50);
-  --color-secondary-50: #fef1f9;
-  --color-secondary-100: #fde6f4;
-  --color-secondary-200: #feccea;
-  --color-secondary-300: #fea3d8;
-  --color-secondary-400: #fc6abd;
-  --color-secondary-500: #f62e9a;
-  --color-secondary-600: #e71b7f;
-  --color-secondary-700: #c90d64;
-  --color-secondary-800: #a60e52;
-  --color-secondary-900: #8a1148;
-  --color-secondary-950: #550227;
-
-  /* --- Accent --- */
-  --color-accent: var(--color-accent-600);
-  --color-accent-hover: var(--color-accent-700);
-  --color-accent-surface: var(--color-accent-50);
-  --color-accent-50: #fef1f9;
-  --color-accent-100: #fde6f4;
-  --color-accent-200: #feccea;
-  --color-accent-300: #fea3d8;
-  --color-accent-400: #fc6abd;
-  --color-accent-500: #f62e9a;
-  --color-accent-600: #e71b7f;
-  --color-accent-700: #c90d64;
-  --color-accent-800: #a60e52;
-  --color-accent-900: #8a1148;
-  --color-accent-950: #550227;
-
-  /* --- Canvas (backgrounds) --- */
-  --color-canvas: var(--color-canvas-50);
-  --color-canvas-inverse: var(--color-canvas-900);
-  --color-canvas-50: #ffffff;
-  --color-canvas-100: #f4f4f5;
-  --color-canvas-200: #e4e4e7;
-  --color-canvas-300: #d4d4d8;
-  --color-canvas-400: #a1a1aa;
-  --color-canvas-500: #71717a;
-  --color-canvas-600: #52525b;
-  --color-canvas-700: #3f3f46;
-  --color-canvas-800: #27272a;
-  --color-canvas-900: #111112;
-  --color-canvas-950: #09090b;
-
-  /* --- Semantic text colours --- */
-  --color-light: var(--color-canvas-400);
-  --color-muted: var(--color-canvas-500);
-  --color-dark: var(--color-canvas-700);
-
-  /* --- Type Scale (body) ---
-     All clamps: 400→1440px. Line-height is unitless (relative to font-size). */
-  --text-*: initial;
-  --text-xs: clamp(0.625rem, 0.577rem + 0.192vw, 0.75rem); /* 10px → 12px */
-  --text-sm: clamp(0.813rem, 0.789rem + 0.096vw, 0.875rem); /* 13px → 14px */
-  --text-md: clamp(1rem, 0.952rem + 0.192vw, 1.125rem); /* 16px → 18px */
-  --text-lg: clamp(1.25rem, 1.154rem + 0.385vw, 1.5rem); /* 20px → 24px */
-  --text-xl: clamp(1.5rem, 1.308rem + 0.769vw, 2rem); /* 24px → 32px */
-  --text-2xl: clamp(1.875rem, 1.587rem + 1.154vw, 2.625rem); /* 30px → 42px */
-
-  /* --- Type Scale (headings) ---
-     Modular scale ×1.33 from h2 base, precomputed.
-     Line-heights set in base layer (/ syntax unreliable with clamp). */
-  --text-h1: clamp(3.99rem, 3.223rem + 3.069vw, 5.985rem); /* 63.8px → 95.8px */
-  --text-h2: clamp(3rem, 2.423rem + 2.308vw, 4.5rem); /* 48px → 72px (base) */
-  --text-h3: clamp(
-    2.256rem,
-    1.822rem + 1.736vw,
-    3.384rem
-  ); /* 36.1px → 54.1px */
-  --text-h4: clamp(1.696rem, 1.37rem + 1.305vw, 2.544rem); /* 27.1px → 40.7px */
-  --text-h5: clamp(1.275rem, 1.03rem + 0.981vw, 1.912rem); /* 20.4px → 30.6px */
-  --text-h6: clamp(0.959rem, 0.774rem + 0.737vw, 1.437rem); /* 15.3px → 23px */
-
-  /* --- Fluid Spacing --- */
-  --spacing-xs: clamp(0.25rem, 0.154rem + 0.385vw, 0.5rem); /*  4px →  8px */
-  --spacing-sm: clamp(0.5rem, 0.308rem + 0.769vw, 1rem); /*  8px → 16px */
-  --spacing-md: clamp(1rem, 0.808rem + 0.769vw, 1.5rem); /* 16px → 24px */
-  --spacing-lg: clamp(1.5rem, 1.115rem + 1.538vw, 2.5rem); /* 24px → 40px */
-  --spacing-xl: clamp(2rem, 1.423rem + 2.308vw, 3.5rem); /* 32px → 56px */
-  --spacing-2xl: clamp(3rem, 2.231rem + 3.077vw, 5rem); /* 48px → 80px */
-
-  /* --- Section Spacing --- */
-  --spacing-section-sm: clamp(3rem, 2.231rem + 3.077vw, 5rem); /* 48px → 80px */
-  --spacing-section-md: clamp(
-    4rem,
-    2.654rem + 5.385vw,
-    7.5rem
-  ); /* 64px → 120px */
-  --spacing-section-lg: clamp(
-    5rem,
-    3.077rem + 7.692vw,
-    10rem
-  ); /* 80px → 160px */
-  --spacing-section-xl: clamp(6rem, 3.5rem + 10vw, 12.5rem); /* 96px → 200px */
-
-  /* --- Layout --- */
-  --gutter: clamp(1rem, 0.231rem + 3.077vw, 3rem); /* 16px → 48px */
-  --spacing-gutter: var(--gutter);
-  --breakpoint-sm: 640px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1280px;
-  --breakpoint-2xl: 1440px; /* <-- Set to same as --content-width */
-  --content-width: 1440px;
-  --spacing-content-width: var(--content-width);
-
-  /* --- Border Radius --- */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-full: 9999px;
-
-  /* --- Shadows / Elevation --- */
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
-  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.12);
-  --shadow-lg: 0 8px 30px rgb(0 0 0 / 0.18);
-  --shadow-glow: 0 0 80px rgb(231 27 127 / 0.35);
-
-  /* --- Transitions --- */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --duration-fast: 150ms;
-  --duration-base: 300ms;
-  --duration-slow: 500ms;
+  --spacing-gutter: clamp(1rem, 4vw, 3rem);
+  --spacing-section: clamp(5rem, 10vw, 9rem);
 }
 
-/* ==========================================================================
-   3. BASE LAYER
-   Only styles that TW preflight doesn't already cover.
-   Preflight handles: box-sizing, margin:0, img/media resets.
-   ========================================================================== */
-
 @layer base {
+  :root {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+
   body {
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: var(--text-md);
-    background-color: var(--color-canvas-dark);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  input,
-  button,
-  textarea,
-  select {
-    font: inherit;
-    color: inherit;
-  }
-
-  textarea {
-    resize: vertical;
-  }
-
-  :focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 2px;
-  }
-
-  /* prettier-ignore */
-  h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    color: white;
+    min-width: 20rem;
+    overflow-x: hidden;
+    background: var(--color-cream-50);
+    color: var(--color-cocoa-900);
+    font-family: var(--font-sans);
+    font-weight: 500;
   }
 
   h1,
-  .h1 {
-    font-size: var(--text-h1);
-    line-height: 0.9;
-  }
   h2,
-  .h2 {
-    font-size: var(--text-h2);
-    line-height: 0.95;
-  }
   h3,
-  .h3 {
-    font-size: var(--text-h3);
-    line-height: 1;
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
   }
-  h4,
-  .h4 {
-    font-size: var(--text-h4);
-    line-height: 1.05;
+
+  a,
+  button,
+  summary {
+    -webkit-tap-highlight-color: transparent;
   }
-  h5,
-  .h5 {
-    font-size: var(--text-h5);
-    line-height: 1.1;
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
   }
-  h6,
-  .h6 {
-    font-size: var(--text-h6);
-    line-height: 1.15;
+
+  ::selection {
+    background: var(--color-orange-500);
+    color: var(--color-cream-50);
   }
 }
 
-/* ==========================================================================
-   4. UTILITIES
-   Custom @utility blocks so they work with hover:, after:, etc.
-   ========================================================================== */
-
-@utility container {
-  width: 100%;
-  max-width: var(--content-width);
+@utility page-shell {
   margin-inline: auto;
+  width: 100%;
+  max-width: 90rem;
+  padding-inline: var(--spacing-gutter);
 }
 
-/* ==========================================================================
-   5. PROJECT-SPECIFIC
-   Styles that are NOT reusable across projects live here.
-   ========================================================================== */
+@utility section-pad {
+  padding-block: var(--spacing-section);
+}
+
+@utility focus-ring {
+  &:focus-visible {
+    outline: 3px solid var(--color-orange-500);
+    outline-offset: 4px;
+  }
+}
+
+@utility playful-card {
+  border-radius: var(--radius-card);
+  outline: 1px solid rgb(47 27 23 / 0.08);
+  outline-offset: -1px;
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-0.75rem) rotate(1deg);
+  }
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  35% {
+    transform: rotate(-4deg);
+  }
+  70% {
+    transform: rotate(3deg);
+  }
+}
+
+.ticker-track {
+  animation: ticker 24s linear infinite;
+}
+
+.ticker-group {
+  width: max-content;
+  min-width: 100vw;
+}
+
+.floating-note {
+  animation: float 5s ease-in-out infinite;
+}
+
+.nudge-on-hover:hover {
+  animation: nudge 450ms ease-out;
+}
+
+.before-after-pagination {
+  position: static;
+  width: auto;
+}
+
+.before-after-bullet {
+  width: 0.625rem;
+  height: 0.625rem;
+  padding: 0;
+  cursor: pointer;
+  appearance: none;
+  border: 1px solid var(--color-cream-50);
+  border-radius: 9999px;
+  background: rgb(255 250 240 / 0.25);
+  transition:
+    width 300ms ease,
+    background-color 300ms ease;
+}
+
+.before-after-bullet.is-active {
+  width: 1.75rem;
+  background: var(--color-cream-50);
+}
+
+.before-after-bullet:focus-visible {
+  outline: 3px solid var(--color-cream-50);
+  outline-offset: 4px;
+}
+
+.reviews-pagination {
+  position: static;
+  width: auto;
+}
+
+.reviews-bullet {
+  width: 0.625rem;
+  height: 0.625rem;
+  padding: 0;
+  cursor: pointer;
+  appearance: none;
+  border: 1px solid var(--color-cocoa-900);
+  border-radius: 9999px;
+  background: rgb(77 45 36 / 0.15);
+  transition:
+    width 300ms ease,
+    background-color 300ms ease;
+}
+
+.reviews-bullet.is-active {
+  width: 1.75rem;
+  background: var(--color-cocoa-900);
+}
+
+.reviews-bullet:focus-visible {
+  outline: 3px solid var(--color-cocoa-900);
+  outline-offset: 4px;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition:
+    opacity 700ms ease,
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "eyebrow": "До и после",
+  "heading": "Видно сразу. Чувствуется дольше.",
+  "paragraph": "Убираем лишнее, сохраняем естественную форму и делаем шерсть удобной для домашнего ухода.",
+  "beforeLabel": "До ухода",
+  "afterLabel": "После комплекса",
+  "slides": [
+    {
+      "label": "Йоркширский терьер — пример 1",
+      "beforeImage": "/images/dog-grooming-care.jpg",
+      "afterImage": "/images/dog-grooming-hero.jpg"
+    },
+    {
+      "label": "Йоркширский терьер — пример 2",
+      "beforeImage": "/images/dog-grooming-gallery-2.jpg",
+      "afterImage": "/images/dog-grooming-gallery-3.jpg"
+    },
+    {
+      "label": "Рыжий кот",
+      "beforeImage": "/images/cat-grooming-gallery-1.jpg",
+      "afterImage": "/images/cat-grooming-hero.jpg"
+    }
+  ]
+}
