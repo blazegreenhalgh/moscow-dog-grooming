@@ -11,6 +11,14 @@ import astroInspectClip from "astro-inspect-clip";
 // https://astro.build/config
 export default defineConfig({
   output: "static",
+  security: {
+    allowedDomains: [
+      {
+        protocol: "https",
+        hostname: "tuzikgrooming.twc1.net",
+      },
+    ],
+  },
   vite: {
     plugins: [tailwindcss()],
   },
