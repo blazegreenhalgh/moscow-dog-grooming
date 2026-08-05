@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+import { resolveCmsImage } from "../lib/cms-images";
+
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  widths?: number[];
+  sizes?: string;
+  width?: number | `${number}`;
+  height?: number | `${number}`;
+  loading?: "eager" | "lazy";
+  decoding?: "async" | "auto" | "sync";
+  fetchpriority?: "high" | "low" | "auto";
+  priority?: boolean;
+  quality?: number;
+}
+
+const { src, widths, priority, quality = 80, ...attributes } = Astro.props;
+const image = resolveCmsImage(src);
+---
+
+{
+  image ? (
+    <Image
+      src={image}
+      format="webp"
+      quality={quality}
+      widths={widths}
+      priority={priority}
+      {...attributes}
+    />
+  ) : (
+    <img src={src} {...attributes} />
+  )
+}

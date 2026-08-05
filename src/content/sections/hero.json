@@ -5,8 +5,8 @@
   "primaryButton": "Позвонить и записаться",
   "secondaryButton": "Посмотреть цены",
   "bookingNote": "По предварительной записи",
-  "mainImage": "/mainImage.jpg",
-  "secondaryImage": "/secondaryImage.jpg",
+  "mainImage": "/src/assets/images/featured/hero-pomeranian.jpg",
+  "secondaryImage": "/src/assets/images/featured/hero-cat.jpg",
   "floatingNote": "без спешки",
   "tickerItems": [
     "Стрижка",

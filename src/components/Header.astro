@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import CmsImage from "./CmsImage.astro";
 
 interface Props {
   content: {
@@ -31,12 +32,15 @@ const navItems = [
 >
   <div class="page-shell flex min-h-20 items-center justify-between gap-6">
     <a href="/" aria-label="Главная" class="focus-ring shrink-0 rounded-xl">
-      <img
+      <CmsImage
         src={content.headerLogo}
         alt=""
         class="w-38 sm:w-44 lg:w-48"
         width="1200"
         height="416"
+        widths={[152, 304, 384]}
+        sizes="(min-width: 1024px) 12rem, (min-width: 640px) 11rem, 9.5rem"
+        priority
       />
     </a>
 

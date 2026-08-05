@@ -6,19 +6,54 @@
   "afterLabel": "После комплекса",
   "slides": [
     {
-      "label": "Йоркширский терьер — пример 1",
-      "beforeImage": "/images/dog-grooming-care.jpg",
-      "afterImage": "/images/dog-grooming-hero.jpg"
+      "label": "Чёрная собака",
+      "beforeImage": "/src/assets/images/before-after/black-dog-before.jpg",
+      "afterImage": "/src/assets/images/before-after/black-dog-after.jpg"
     },
     {
-      "label": "Йоркширский терьер — пример 2",
-      "beforeImage": "/images/dog-grooming-gallery-2.jpg",
-      "afterImage": "/images/dog-grooming-gallery-3.jpg"
+      "label": "Серый шпиц",
+      "beforeImage": "/src/assets/images/before-after/grey-pomeranian-before.jpg",
+      "afterImage": "/src/assets/images/before-after/grey-pomeranian-after.jpg"
+    },
+    {
+      "label": "Длинношёрстный чихуахуа",
+      "beforeImage": "/src/assets/images/before-after/longhair-chihuahua-before.jpg",
+      "afterImage": "/src/assets/images/before-after/longhair-chihuahua-after.jpg"
+    },
+    {
+      "label": "Йоркширский терьер",
+      "beforeImage": "/src/assets/images/before-after/yorkshire-terrier-before.jpg",
+      "afterImage": "/src/assets/images/before-after/yorkshire-terrier-after.jpg"
+    },
+    {
+      "label": "Той-пудель",
+      "beforeImage": "/src/assets/images/before-after/toy-poodle-before.jpg",
+      "afterImage": "/src/assets/images/before-after/toy-poodle-after.jpg"
+    },
+    {
+      "label": "Силки-терьер",
+      "beforeImage": "/src/assets/images/before-after/silky-terrier-before.jpg",
+      "afterImage": "/src/assets/images/before-after/silky-terrier-after.jpg"
+    },
+    {
+      "label": "Рыжий шпиц",
+      "beforeImage": "/src/assets/images/before-after/orange-pomeranian-before.jpg",
+      "afterImage": "/src/assets/images/featured/hero-pomeranian.jpg"
+    },
+    {
+      "label": "Мраморный шпиц",
+      "beforeImage": "/src/assets/images/before-after/merle-dog-before.jpg",
+      "afterImage": "/src/assets/images/before-after/merle-dog-after.jpg"
+    },
+    {
+      "label": "Чёрный шпиц",
+      "beforeImage": "/src/assets/images/before-after/black-spitz-before.jpg",
+      "afterImage": "/src/assets/images/before-after/black-spitz-after.jpg"
     },
     {
       "label": "Рыжий кот",
-      "beforeImage": "/images/cat-grooming-gallery-1.jpg",
-      "afterImage": "/images/cat-grooming-hero.jpg"
+      "beforeImage": "/src/assets/images/before-after/orange-cat-before.jpg",
+      "afterImage": "/src/assets/images/before-after/orange-cat-after.jpg"
     }
   ]
 }

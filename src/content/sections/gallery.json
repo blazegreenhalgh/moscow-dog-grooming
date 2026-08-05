@@ -4,31 +4,31 @@
   "paragraph": "Немного процесса, много заботы и тот самый свежий вид после хорошего груминга.",
   "images": [
     {
-      "image": "/images/dog-grooming-gallery-1.jpg"
+      "image": "/src/assets/images/gallery/pug.jpg"
     },
     {
-      "image": "/images/cat-grooming-gallery-1.jpg"
+      "image": "/src/assets/images/gallery/beagle.jpg"
     },
     {
-      "image": "/images/dog-grooming-gallery-2.jpg"
+      "image": "/src/assets/images/gallery/corgi.jpg"
     },
     {
-      "image": "/images/cat-grooming-gallery-2.jpg"
+      "image": "/src/assets/images/gallery/husky.jpg"
     },
     {
-      "image": "/images/dog-grooming-gallery-3.jpg"
+      "image": "/src/assets/images/gallery/persian-cat.jpg"
     },
     {
-      "image": "/images/cat-grooming-hero.jpg"
+      "image": "/src/assets/images/gallery/german-shepherd.jpg"
     },
     {
-      "image": "/images/dog-grooming-hero.jpg"
+      "image": "/src/assets/images/gallery/brown-poodle.jpg"
     },
     {
-      "image": "/images/dog-grooming-care.jpg"
+      "image": "/src/assets/images/gallery/chihuahua-sunglasses.jpg"
     },
     {
-      "image": "/images/dog-grooming-finish.jpg"
+      "image": "/src/assets/images/gallery/white-chihuahua-red-bow.jpg"
     }
   ]
 }

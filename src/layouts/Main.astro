@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
+import { getImage } from "astro:assets";
 import Header from "../components/Header.astro";
+import { resolveCmsImage } from "../lib/cms-images";
 
 interface Props {
   site: {
@@ -22,6 +24,15 @@ interface Props {
 }
 
 const { site } = Astro.props;
+const socialImageSource = resolveCmsImage(site.socialImage);
+const socialImage = socialImageSource
+  ? await getImage({
+      src: socialImageSource,
+      format: "webp",
+      quality: 80,
+      width: 1200,
+    })
+  : undefined;
 ---
 
 <!doctype html>
@@ -44,7 +55,7 @@ const { site } = Astro.props;
     <meta property="og:title" content={site.seoTitle} />
     <meta property="og:description" content={site.seoDescription} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content={site.socialImage} />
+    <meta property="og:image" content={socialImage?.src ?? site.socialImage} />
   </head>
   <body>
     <div class="isolate">

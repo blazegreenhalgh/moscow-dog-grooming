@@ -20,8 +20,8 @@ const editableImage = (label: string, description?: string) =>
   fields.image({
     label,
     description,
-    directory: "public",
-    publicPath: "/",
+    directory: "src/assets/images",
+    publicPath: "/src/assets/images/",
     validation: { isRequired: true },
   });
 
@@ -168,9 +168,19 @@ export default config({
     pricing: section("pricing", "05. Цены", {
       eyebrow: requiredText("Надпись над заголовком"),
       heading: requiredText("Заголовок"),
-      audience: requiredText("Метка над ценой"),
-      priceLabel: requiredText("Подпись перед ценой"),
-      price: requiredText("Цена"),
+      audience: requiredText("Метка над списком цен"),
+      priceItems: fields.array(
+        fields.object({
+          label: requiredText("Порода или вес собаки"),
+          price: requiredText("Цена комплекса"),
+        }),
+        {
+          label: "Ориентировочные цены",
+          itemLabel: (props) =>
+            props.fields.label.value || "Новая строка прайса",
+          validation: { length: { min: 1 } },
+        },
+      ),
       paragraph: requiredText("Абзац", { multiline: true }),
       button: requiredText("Текст кнопки"),
     }),

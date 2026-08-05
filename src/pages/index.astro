@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "../../keystatic.config";
+import CmsImage from "../components/CmsImage.astro";
 import Main from "../layouts/Main.astro";
 import "swiper/css";
 import "swiper/css/a11y";
@@ -107,29 +108,28 @@ if (
 
       <div class="relative mx-auto w-full max-w-2xl lg:mx-0" data-reveal>
         <div
-          class="playful-card bg-cream-100 relative aspect-[5/6] rotate-2 overflow-hidden shadow-[0_30px_80px_rgb(77_45_36_/_0.16)] sm:aspect-[4/3]"
+          class="playful-card bg-cream-100 relative aspect-[4/5] rotate-2 overflow-hidden shadow-[0_30px_80px_rgb(77_45_36_/_0.16)] sm:aspect-[5/6]"
         >
-          <img
+          <CmsImage
             src={hero.mainImage}
             alt=""
             class="size-full object-cover object-center"
-            width="1800"
-            height="1200"
-            loading="eager"
-            fetchpriority="high"
+            widths={[480, 640, 768, 960]}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            priority
           />
         </div>
 
         <div
           class="playful-card absolute -bottom-8 -left-2 w-36 -rotate-6 overflow-hidden bg-sky-100 shadow-[0_16px_50px_rgb(77_45_36_/_0.18)] sm:-left-8 sm:w-48 lg:-left-12"
         >
-          <img
+          <CmsImage
             src={hero.secondaryImage}
             alt=""
             class="aspect-square w-full object-cover"
-            width="1800"
-            height="1200"
-            loading="eager"
+            widths={[192, 384]}
+            sizes="(min-width: 640px) 12rem, 9rem"
+            priority
           />
         </div>
 
@@ -192,13 +192,13 @@ if (
               ]}
               data-reveal
             >
-              <div class="aspect-[4/3] overflow-hidden">
-                <img
+              <div class="aspect-square overflow-hidden">
+                <CmsImage
                   src={card.image}
                   alt=""
                   class="size-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  width="1400"
-                  height="933"
+                  widths={[320, 480, 640, 960]}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   loading="lazy"
                 />
               </div>
@@ -262,14 +262,14 @@ if (
                   aria-roledescription="slide"
                   aria-label={`${index + 1} из ${beforeAfter.slides.length}`}
                 >
-                  <div class="grid grid-cols-2 gap-3 sm:gap-5">
+                  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
                     <figure class="playful-card bg-cream-100 relative rotate-[-1deg] overflow-hidden">
-                      <img
+                      <CmsImage
                         src={slide.beforeImage}
                         alt=""
-                        class="aspect-[4/5] w-full object-cover md:aspect-[4/3]"
-                        width="1400"
-                        height="933"
+                        class="aspect-[3/4] w-full object-cover"
+                        widths={[320, 480, 640, 960]}
+                        sizes="(min-width: 640px) 50vw, 100vw"
                         loading="lazy"
                       />
                       <figcaption class="bg-cocoa-900 text-cream-50 absolute top-3 left-3 rounded-full px-3 py-1.5 text-sm sm:top-4 sm:left-4 sm:px-4 sm:py-2">
@@ -278,12 +278,12 @@ if (
                     </figure>
 
                     <figure class="playful-card bg-cream-100 relative rotate-1 overflow-hidden">
-                      <img
+                      <CmsImage
                         src={slide.afterImage}
                         alt=""
-                        class="aspect-[4/5] w-full object-cover md:aspect-[4/3]"
-                        width="1400"
-                        height="933"
+                        class="aspect-[3/4] w-full object-cover"
+                        widths={[320, 480, 640, 960]}
+                        sizes="(min-width: 640px) 50vw, 100vw"
                         loading="lazy"
                       />
                       <figcaption class="bg-cream-50 absolute top-3 left-3 rounded-full px-3 py-1.5 text-sm text-orange-600 sm:top-4 sm:left-4 sm:px-4 sm:py-2">
@@ -297,28 +297,34 @@ if (
           </div>
         </div>
 
-        <button
-          type="button"
-          class="focus-ring bg-cream-50 text-cocoa-900 absolute top-1/2 left-3 z-10 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full shadow-[0_8px_28px_rgb(47_27_23_/_0.2)] transition-transform hover:scale-105 sm:left-5 sm:size-14"
-          data-slider-prev
-          aria-label="Предыдущий пример"
-        >
-          <Icon name="right-arrow" class="size-5 rotate-180 sm:size-6" />
-        </button>
-
-        <button
-          type="button"
-          class="focus-ring bg-cream-50 text-cocoa-900 absolute top-1/2 right-3 z-10 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full shadow-[0_8px_28px_rgb(47_27_23_/_0.2)] transition-transform hover:scale-105 sm:right-5 sm:size-14"
-          data-slider-next
-          aria-label="Следующий пример"
-        >
-          <Icon name="right-arrow" class="size-5 sm:size-6" />
-        </button>
-
         <div
-          class="before-after-pagination mt-5 flex items-center justify-center gap-2.5"
-          data-slider-pagination
+          class="relative mt-5 flex min-h-11 items-center justify-center sm:static sm:min-h-0"
         >
+          <div
+            class="before-after-pagination flex items-center justify-center gap-2.5"
+            data-slider-pagination
+          >
+          </div>
+
+          <div class="absolute right-0 flex items-center gap-2 sm:contents">
+            <button
+              type="button"
+              class="focus-ring bg-cream-50 text-cocoa-900 z-10 inline-flex size-11 items-center justify-center rounded-full shadow-[0_8px_28px_rgb(47_27_23_/_0.2)] transition-transform hover:scale-105 sm:absolute sm:top-1/2 sm:left-5 sm:size-14 sm:-translate-y-1/2"
+              data-slider-prev
+              aria-label="Предыдущий пример"
+            >
+              <Icon name="right-arrow" class="size-5 rotate-180 sm:size-6" />
+            </button>
+
+            <button
+              type="button"
+              class="focus-ring bg-cream-50 text-cocoa-900 z-10 inline-flex size-11 items-center justify-center rounded-full shadow-[0_8px_28px_rgb(47_27_23_/_0.2)] transition-transform hover:scale-105 sm:absolute sm:top-1/2 sm:right-5 sm:size-14 sm:-translate-y-1/2"
+              data-slider-next
+              aria-label="Следующий пример"
+            >
+              <Icon name="right-arrow" class="size-5 sm:size-6" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -378,28 +384,36 @@ if (
       </div>
 
       <article
-        class="playful-card bg-cream-50 flex w-full max-w-4xl flex-col items-center gap-8 p-7 text-center sm:p-10"
+        class="playful-card bg-cream-50 flex w-full max-w-4xl flex-col items-center gap-8 p-5 text-center sm:p-10"
         data-reveal
       >
-        <div class="flex flex-col items-center gap-5">
-          <p
-            class="rounded-full bg-orange-50 px-3 py-1 text-sm text-orange-600"
+        <div class="flex w-full max-w-2xl flex-col items-center gap-5">
+          <h3
+            class="font-display text-cocoa-900 text-2xl font-extrabold tracking-tight text-balance sm:text-3xl"
           >
             {pricing.audience}
-          </p>
-          <div class="flex flex-col gap-2">
-            <p class="text-cocoa-700 text-base sm:text-sm">
-              {pricing.priceLabel}
-            </p>
-            <p
-              class="font-display text-cocoa-900 text-4xl font-extrabold tracking-tight whitespace-nowrap tabular-nums sm:text-6xl lg:text-7xl"
-            >
-              {pricing.price}
-            </p>
-          </div>
+          </h3>
+          <ul
+            class="border-cocoa-900/10 divide-cocoa-900/10 w-full divide-y border-y text-left"
+          >
+            {
+              pricing.priceItems.map((item) => (
+                <li class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-4 sm:py-5">
+                  <span class="text-cocoa-900 text-base font-semibold sm:text-lg">
+                    {item.label}
+                  </span>
+                  <span class="font-display text-cocoa-900 text-xl font-extrabold tracking-tight whitespace-nowrap tabular-nums sm:text-2xl">
+                    {item.price}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
         </div>
 
-        <div class="flex flex-col items-center gap-6">
+        <div
+          class="border-cocoa-900/10 flex w-full max-w-2xl flex-col items-center gap-6 border-t pt-8"
+        >
           <p
             class="text-cocoa-700 max-w-[40ch] text-lg text-pretty sm:text-base"
           >
@@ -444,10 +458,12 @@ if (
         {
           gallery.images.map((item) => (
             <figure class="playful-card group bg-blush-100 mb-4 break-inside-avoid overflow-hidden last:mb-0">
-              <img
+              <CmsImage
                 src={item.image}
                 alt=""
                 class="block h-auto w-full transition-transform duration-700 group-hover:scale-105"
+                widths={[320, 480, 640, 960]}
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                 loading="lazy"
               />
             </figure>
@@ -662,12 +678,14 @@ if (
       class="page-shell flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
     >
       <a href="/" aria-label="Главная" class="focus-ring rounded-xl">
-        <img
+        <CmsImage
           src={site.footerLogo}
           alt=""
           class="w-44"
           width="1200"
           height="416"
+          widths={[176, 352]}
+          sizes="11rem"
           loading="lazy"
         />
       </a>

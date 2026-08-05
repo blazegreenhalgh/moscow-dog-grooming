@@ -1,9 +1,9 @@
 {
   "seoTitle": "ГРУМИНГ — уход за собаками и кошками",
   "seoDescription": "Бережный груминг собак и кошек: стрижки, вычёсывание, уход за шерстью и когтями. Позвоните, чтобы подобрать услугу и время.",
-  "socialImage": "/brand-concepts/gruming-logo-playful-cream-blush-soft-subtext-v6.png",
-  "headerLogo": "/logo-tuzik-cream-transparent.png",
-  "footerLogo": "/logo-tuzik-cream-transparent.png",
+  "socialImage": "/src/assets/images/brand-concepts/gruming-logo-playful-cream-blush-soft-subtext-v6.png",
+  "headerLogo": "/src/assets/images/logo-tuzik-cream-transparent.png",
+  "footerLogo": "/src/assets/images/logo-tuzik-cream-transparent.png",
   "location": "Москва",
   "hours": "Ежедневно 10:00–21:00",
   "phoneDisplay": "+7 (900) 000-00-00",
