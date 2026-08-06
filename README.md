@@ -17,9 +17,9 @@ npm run dev
 Open:
 
 - Website: `http://localhost:4321/`
-- CMS: `http://localhost:4321/keystatic`
+- CMS: `http://localhost:4321/admin`
 
-Keystatic is configured in GitHub mode for `blazegreenhalgh/moscow-dog-grooming`. On the first visit to `/keystatic`, follow the setup flow to create and install the GitHub App for this repository. The setup creates a private `.env` file containing the required credentials.
+Keystatic is configured in GitHub mode for `blazegreenhalgh/moscow-dog-grooming`. On the first visit to `/admin`, follow the setup flow to create and install the GitHub App for this repository. The setup creates a private `.env` file containing the required credentials.
 
 Do not commit `.env`. Use `.env.example` as the list of variables that must also be added to the production environment.
 
@@ -69,4 +69,4 @@ Add the four Keystatic variables listed in `.env.example` to the Timeweb applica
 
 ## Client access and publishing
 
-The client needs a GitHub account with write access to the repository. They sign in at `/keystatic` using GitHub. Saving content creates a GitHub commit, which triggers a Timeweb rebuild when automatic deployment is enabled. The public page updates after that deployment completes.
+The client needs a GitHub account with write access to the repository. They sign in at `/admin` using GitHub. Saving content creates a GitHub commit, which triggers a Timeweb rebuild when automatic deployment is enabled. The public page updates after that deployment completes.

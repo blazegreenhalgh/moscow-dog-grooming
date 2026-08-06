@@ -11,6 +11,10 @@ import astroInspectClip from "astro-inspect-clip";
 // https://astro.build/config
 export default defineConfig({
   output: "static",
+  redirects: {
+    "/admin": "/keystatic",
+    "/admin/[...params]": "/keystatic/[...params]",
+  },
   security: {
     allowedDomains: [
       {
