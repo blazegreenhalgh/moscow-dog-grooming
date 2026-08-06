@@ -7,53 +7,58 @@
   "slides": [
     {
       "label": "Чёрная собака",
-      "beforeImage": "/src/assets/images/before-after/black-dog-before.jpg",
-      "afterImage": "/src/assets/images/before-after/black-dog-after.jpg"
+      "beforeImage": "/src/assets/images/slides/0/beforeImage.jpg",
+      "afterImage": "/src/assets/images/slides/0/afterImage.jpg"
     },
     {
       "label": "Серый шпиц",
-      "beforeImage": "/src/assets/images/before-after/grey-pomeranian-before.jpg",
-      "afterImage": "/src/assets/images/before-after/grey-pomeranian-after.jpg"
+      "beforeImage": "/src/assets/images/slides/1/beforeImage.jpg",
+      "afterImage": "/src/assets/images/slides/1/afterImage.jpg"
     },
     {
       "label": "Длинношёрстный чихуахуа",
-      "beforeImage": "/src/assets/images/before-after/longhair-chihuahua-before.jpg",
-      "afterImage": "/src/assets/images/before-after/longhair-chihuahua-after.jpg"
+      "beforeImage": "/src/assets/images/slides/2/beforeImage.jpg",
+      "afterImage": "/src/assets/images/slides/2/afterImage.jpg"
     },
     {
       "label": "Йоркширский терьер",
-      "beforeImage": "/src/assets/images/before-after/yorkshire-terrier-before.jpg",
-      "afterImage": "/src/assets/images/before-after/yorkshire-terrier-after.jpg"
+      "beforeImage": "/src/assets/images/slides/3/beforeImage.jpg",
+      "afterImage": "/src/assets/images/slides/3/afterImage.jpg"
     },
     {
       "label": "Той-пудель",
-      "beforeImage": "/src/assets/images/before-after/toy-poodle-before.jpg",
-      "afterImage": "/src/assets/images/before-after/toy-poodle-after.jpg"
+      "beforeImage": "/src/assets/images/slides/4/beforeImage.jpg",
+      "afterImage": "/src/assets/images/slides/4/afterImage.jpg"
     },
     {
       "label": "Силки-терьер",
-      "beforeImage": "/src/assets/images/before-after/silky-terrier-before.jpg",
-      "afterImage": "/src/assets/images/before-after/silky-terrier-after.jpg"
+      "beforeImage": "/src/assets/images/slides/5/beforeImage.jpg",
+      "afterImage": "/src/assets/images/slides/5/afterImage.jpg"
     },
     {
       "label": "Рыжий шпиц",
-      "beforeImage": "/src/assets/images/before-after/orange-pomeranian-before.jpg",
-      "afterImage": "/src/assets/images/featured/hero-pomeranian.jpg"
+      "beforeImage": "/src/assets/images/slides/6/beforeImage.jpg",
+      "afterImage": "/src/assets/images/slides/6/afterImage.jpg"
     },
     {
       "label": "Мраморный шпиц",
-      "beforeImage": "/src/assets/images/before-after/merle-dog-before.jpg",
-      "afterImage": "/src/assets/images/before-after/merle-dog-after.jpg"
+      "beforeImage": "/src/assets/images/slides/7/beforeImage.jpg",
+      "afterImage": "/src/assets/images/slides/7/afterImage.jpg"
     },
     {
       "label": "Чёрный шпиц",
-      "beforeImage": "/src/assets/images/before-after/black-spitz-before.jpg",
-      "afterImage": "/src/assets/images/before-after/black-spitz-after.jpg"
+      "beforeImage": "/src/assets/images/slides/8/beforeImage.jpg",
+      "afterImage": "/src/assets/images/slides/8/afterImage.jpg"
     },
     {
       "label": "Рыжий кот",
-      "beforeImage": "/src/assets/images/before-after/orange-cat-before.jpg",
-      "afterImage": "/src/assets/images/before-after/orange-cat-after.jpg"
+      "beforeImage": "/src/assets/images/slides/9/beforeImage.jpg",
+      "afterImage": "/src/assets/images/slides/9/afterImage.jpg"
+    },
+    {
+      "label": "шпиц",
+      "beforeImage": "/src/assets/images/slides/10/beforeImage.HEIC",
+      "afterImage": "/src/assets/images/slides/10/afterImage.HEIC"
     }
   ]
 }
