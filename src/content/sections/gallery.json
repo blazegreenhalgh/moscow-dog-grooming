@@ -4,31 +4,34 @@
   "paragraph": "Немного процесса, много заботы и тот самый свежий вид после хорошего груминга.",
   "images": [
     {
-      "image": "/src/assets/images/gallery/pug.jpg"
+      "image": "/src/assets/images/images/0/image.jpg"
     },
     {
-      "image": "/src/assets/images/gallery/beagle.jpg"
+      "image": "/src/assets/images/images/1/image.jpg"
     },
     {
-      "image": "/src/assets/images/gallery/corgi.jpg"
+      "image": "/src/assets/images/images/2/image.jpg"
     },
     {
-      "image": "/src/assets/images/gallery/husky.jpg"
+      "image": "/src/assets/images/images/3/image.jpg"
     },
     {
-      "image": "/src/assets/images/gallery/persian-cat.jpg"
+      "image": "/src/assets/images/images/4/image.jpg"
     },
     {
-      "image": "/src/assets/images/gallery/german-shepherd.jpg"
+      "image": "/src/assets/images/images/5/image.jpg"
     },
     {
-      "image": "/src/assets/images/gallery/brown-poodle.jpg"
+      "image": "/src/assets/images/images/6/image.jpg"
     },
     {
-      "image": "/src/assets/images/gallery/chihuahua-sunglasses.jpg"
+      "image": "/src/assets/images/images/7/image.jpg"
     },
     {
-      "image": "/src/assets/images/gallery/white-chihuahua-red-bow.jpg"
+      "image": "/src/assets/images/images/8/image.jpg"
+    },
+    {
+      "image": "/src/assets/images/images/9/image.png"
     }
   ]
 }
