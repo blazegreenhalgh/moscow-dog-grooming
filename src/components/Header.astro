@@ -1,22 +1,23 @@
 ---
 import { Icon } from "astro-icon/components";
 import CmsImage from "./CmsImage.astro";
+import { phoneHrefFromDisplay } from "../lib/contact";
 
 interface Props {
   content: {
     headerLogo: string;
-    phoneHref: string;
+    phoneDisplay: string;
     navServices: string;
     navPrices: string;
     navGallery: string;
     navReviews: string;
     navContact: string;
-    headerPhoneButton: string;
     mobilePhoneButton: string;
   };
 }
 
 const { content } = Astro.props;
+const phoneHref = phoneHrefFromDisplay(content.phoneDisplay);
 
 const navItems = [
   { label: content.navServices, href: "#services" },
@@ -61,10 +62,10 @@ const navItems = [
     </nav>
 
     <a
-      href={content.phoneHref}
+      href={phoneHref}
       class="focus-ring border-cream-50/80 text-cream-50 hover:bg-cream-50 hidden rounded-full border px-4 py-2 text-sm transition-colors hover:text-orange-600 sm:inline-flex"
     >
-      {content.headerPhoneButton}
+      {content.phoneDisplay}
     </a>
 
     <button
@@ -106,7 +107,7 @@ const navItems = [
           }
           <li class="pt-3">
             <a
-              href={content.phoneHref}
+              href={phoneHref}
               class="focus-ring border-cream-50/80 text-cream-50 flex min-h-12 items-center justify-center rounded-full border px-4 text-base"
             >
               {content.mobilePhoneButton}

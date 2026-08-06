@@ -72,15 +72,11 @@ export default config({
           "Показывается на первом экране, в контактах и в подвале сайта.",
       }),
       phoneDisplay: requiredText("Телефон — как показывать на сайте"),
-      phoneHref: requiredText("Телефон — ссылка", {
-        description: "Формат: tel:+79000000000",
-      }),
       navServices: requiredText("Меню: услуги"),
       navPrices: requiredText("Меню: цены"),
       navGallery: requiredText("Меню: работы"),
       navReviews: requiredText("Меню: отзывы"),
       navContact: requiredText("Меню: контакты"),
-      headerPhoneButton: requiredText("Кнопка телефона в шапке"),
       mobilePhoneButton: requiredText("Кнопка телефона в мобильном меню"),
       stickyPhoneButton: requiredText("Плавающая кнопка на телефоне"),
       footerTagline: requiredText("Текст в подвале"),
@@ -256,7 +252,6 @@ export default config({
       paragraph: requiredText("Абзац", { multiline: true }),
       phoneLabel: requiredText("Подпись телефона"),
       addressLabel: requiredText("Подпись адреса"),
-      address: requiredText("Адрес", { multiline: true }),
     }),
   },
 });
