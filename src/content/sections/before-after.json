@@ -59,6 +59,11 @@
       "label": "шпиц",
       "beforeImage": "/src/assets/images/slides/10/beforeImage.HEIC",
       "afterImage": "/src/assets/images/slides/10/afterImage.HEIC"
+    },
+    {
+      "label": "Шпиц",
+      "beforeImage": "/src/assets/images/slides/11/beforeImage.jpeg",
+      "afterImage": "/src/assets/images/slides/11/afterImage.jpeg"
     }
   ]
 }
