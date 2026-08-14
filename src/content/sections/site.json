@@ -1,11 +1,11 @@
 {
   "seoTitle": "ГРУМИНГ — уход за собаками и кошками",
   "seoDescription": "Бережный груминг собак и кошек: стрижки, вычёсывание, уход за шерстью и когтями. Позвоните, чтобы подобрать услугу и время.",
-  "socialImage": "/src/assets/images/logo-tuzik-social.png",
+  "socialImage": "/src/assets/images/socialImage.png",
   "headerLogo": "/src/assets/images/headerLogo.png",
   "footerLogo": "/src/assets/images/footerLogo.png",
   "location": "Одинцовский городской округ, деревня Малые Вяземы, ул. Восточная дом 49",
-  "hours": "Ежедневно 10:00–21:00",
+  "hours": "Ежедневно 10:00–19:00",
   "phoneDisplay": "+7 (926)979-25-03",
   "navServices": "Услуги",
   "navPrices": "Цены",
